@@ -60,6 +60,14 @@ def buscar_dono(dono_id):
 
     return jsonify(dono_encontrado.to_dict())
 
+@app.route("/donos/<int:dono_id>/pets", methods=["GET"]?
+def listar_pets_do_dono(dono_id):
+    dono = db.session.get(Dono, dono_id)
+
+    if dono is None:
+        return jsonify({"erro": "Dono nao encontrado"}), 404
+
+        return jsonify([pet.to_dict() for pet in dono.pets])
 
 @app.route("/donos", methods=["POST"])
 def cadastrar_dono():
